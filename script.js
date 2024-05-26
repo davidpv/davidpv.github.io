@@ -1,3 +1,20 @@
+window.addEventListener('deviceorientation', function(event) {
+    const countdown = document.getElementById('countdown');
+    // Get the orientation angles
+    const beta = event.beta;  // In degree in the range [-180,180], front to back motion
+    const gamma = event.gamma; // In degree in the range [-90,90], left to right motion
+
+    // Calculate the maximum translation range (you can adjust these values)
+    const maxTranslation = 30;
+
+    // Calculate the translation values based on the orientation angles
+    const translateX = (gamma / 90) * maxTranslation;
+    const translateY = (beta / 180) * maxTranslation;
+
+    // Apply the translation using CSS transform
+    countdown.style.transform = `translate(${translateX}px, ${translateY}px)`;
+});
+
 var countDownDate = new Date("May 31, 2024 00:00:00").getTime();
 
 countdown();
